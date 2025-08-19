@@ -1,13 +1,13 @@
 steps:
 # 1. Copy configuration files from Cloud Storage
 - name: 'gcr.io/cloud-builders/gsutil'
-  args: ['cp', 'gs://${_CONFIG_BUCKET}/deploy_fireact_demo/.firebaserc', '.']
+  args: ['cp', 'gs://${_CONFIG_BUCKET}/.firebaserc', '.']
 - name: 'gcr.io/cloud-builders/gsutil'
-  args: ['cp', 'gs://${_CONFIG_BUCKET}/deploy_fireact_demo/src/config/firebase.config.json', 'src/config/']
+  args: ['cp', 'gs://${_CONFIG_BUCKET}/src/config/firebase.config.json', 'src/config/']
 - name: 'gcr.io/cloud-builders/gsutil'
-  args: ['cp', 'gs://${_CONFIG_BUCKET}/deploy_fireact_demo/src/config/stripe.config.json', 'src/config/']
+  args: ['cp', 'gs://${_CONFIG_BUCKET}/src/config/stripe.config.json', 'src/config/']
 - name: 'gcr.io/cloud-builders/gsutil'
-  args: ['cp', 'gs://${_CONFIG_BUCKET}/deploy_fireact_demo/functions/src/config/stripe.config.json', 'functions/src/config/']
+  args: ['cp', 'gs://${_CONFIG_BUCKET}/functions/src/config/stripe.config.json', 'functions/src/config/']
 
 # 2. Install dependencies
 - name: 'node:22'
@@ -20,7 +20,7 @@ steps:
   args: ['run', 'build']
 
 # 4. Deploy to Firebase
-- name: 'gcr.io/$PROJECT_ID/firebase'
+- name: 'us-docker.pkg.dev/firebase-cli/us/firebase'
   args: ['deploy', '--only', 'hosting']
 
 # Substitutions to be defined in trigger
