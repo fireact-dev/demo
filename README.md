@@ -1,69 +1,30 @@
-# React + TypeScript + Vite
+# Fireact.dev Demo Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository (`/demo`) hosts a demonstration of the `fireact.dev` application, which is typically installed using the `create-fireact-app` CLI tool. It showcases the core functionalities and structure of a Fireact.dev project.
 
-Currently, two official plugins are available:
+## Running Locally
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+You can run this demo application locally using the Firebase Emulators. This allows you to test the application's features, including authentication, Firestore, and Cloud Functions, in a local environment without deploying to Firebase.
 
-## Expanding the ESLint configuration
+To get started, follow the instructions in the official Fireact.dev Getting Started documentation: [https://docs.fireact.dev/getting-started/](https://docs.fireact.dev/getting-started/)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Typically, after navigating into the project directory, you would run:
+```bash
+npm run build && cd functions && npm run build && cd ..
+firebase emulators:start
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+For Stripe webhook testing, in a separate terminal:
+```bash
+stripe listen --forward-to http://127.0.0.1:5001/<your-firebase-project-id>/us-central1/stripeWebhook
 ```
+
+## CI/CD with Google Cloud Build
+
+This demo repository includes a `cloudbuild.yaml` file, which defines a Continuous Integration/Continuous Deployment (CI/CD) pipeline using Google Cloud Build. This configuration automates the process of building and deploying the application.
+
+### Production Configuration
+
+The `deploy` folder within this repository is designed to host production configuration files. **These files are not included in the Git repository for security reasons.** Instead, they are uploaded to a secure Google Cloud Storage bucket.
+
+During the Cloud Build process, the `cloudbuild.yaml` script retrieves these production configurations from the designated storage bucket. It then uses these configurations to build the production-ready version of the application and deploy it to your Firebase project. This ensures that sensitive production credentials and settings are kept separate from the codebase and are securely managed.

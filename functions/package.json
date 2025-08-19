@@ -22,7 +22,7 @@
   },
   "private": true,
   "devDependencies": {
-    "@fireact.dev/functions": "^1.0.0",
+    "@fireact.dev/functions": "^1.0.1",
     "@typescript-eslint/eslint-plugin": "^8.39.1",
     "@typescript-eslint/parser": "^8.39.1",
     "eslint": "^9.33.0",
