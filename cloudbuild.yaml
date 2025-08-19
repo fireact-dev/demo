@@ -3,9 +3,13 @@ steps:
 - name: 'gcr.io/cloud-builders/gsutil'
   args: ['cp', 'gs://${_CONFIG_BUCKET}/.firebaserc', '.']
 - name: 'gcr.io/cloud-builders/gsutil'
+  args: ['cp', 'gs://${_CONFIG_BUCKET}/src/config/app.config.json', 'src/config/']
+- name: 'gcr.io/cloud-builders/gsutil'
   args: ['cp', 'gs://${_CONFIG_BUCKET}/src/config/firebase.config.json', 'src/config/']
 - name: 'gcr.io/cloud-builders/gsutil'
   args: ['cp', 'gs://${_CONFIG_BUCKET}/src/config/stripe.config.json', 'src/config/']
+- name: 'gcr.io/cloud-builders/gsutil'
+  args: ['cp', 'gs://${_CONFIG_BUCKET}/functions/src/config/app.config.json', 'functions/src/config/']
 - name: 'gcr.io/cloud-builders/gsutil'
   args: ['cp', 'gs://${_CONFIG_BUCKET}/functions/src/config/stripe.config.json', 'functions/src/config/']
 
