@@ -21,7 +21,7 @@ steps:
 
 # 4. Deploy to Firebase
 - name: 'us-docker.pkg.dev/firebase-cli/us/firebase'
-  args: ['deploy', '--only', 'hosting']
+  args: ['deploy']
 
 # Substitutions to be defined in trigger
 substitutions:
