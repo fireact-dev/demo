@@ -28,3 +28,6 @@ src/config/stripe.config.json
 functions/src/config/stripe.config.json
 functions/lib
 deploy/
+
+# Worktrees for isolated feature work — never tracked.
+.worktree/
