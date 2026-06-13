@@ -22,15 +22,15 @@
   },
   "private": true,
   "dependencies": {
-    "@fireact.dev/functions": "^1.0.2"
+    "@fireact.dev/functions": "^1.0.3"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^8.40.0",
-    "@typescript-eslint/parser": "^8.40.0",
-    "eslint": "^9.33.0",
+    "@typescript-eslint/eslint-plugin": "^8.61.0",
+    "@typescript-eslint/parser": "^8.61.0",
+    "eslint": "^9.39.4",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-import": "^2.32.0",
-    "firebase-functions-test": "^3.4.1",
-    "typescript": "^5.9.2"
+    "firebase-functions-test": "^3.5.0",
+    "typescript": "^5.9.3"
   }
 }
