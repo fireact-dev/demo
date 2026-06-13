@@ -36,7 +36,10 @@ steps:
   dir: 'functions'
 
 # 6. Deploy to Firebase
-- name: 'us-docker.pkg.dev/firebase-cli/us/firebase'
+# Pinned to 14.27.0 — the latest tag tracks the firebase-tools npm package
+# and introduced a minimatch v9 regression (TypeError: minimatch is not a function).
+# Bump this version deliberately after verifying the new version works.
+- name: 'us-docker.pkg.dev/firebase-cli/us/firebase:14.27.0'
   args: ['deploy']
 
 # Substitutions to be defined in trigger
